@@ -1,0 +1,280 @@
+MDScreenManager:
+    LoginScreen:
+    FacultyScreen:
+    ThemeScreen:
+    MenuScreen:
+
+<LessonButton>:
+    size_hint_y: None
+    size_hint_x: 0.8
+    pos_hint: {'center_x': .5}
+    elevation: 1
+    shadow_offset: 0.5, -0.5
+    radius: [dp(5), dp(5), dp(5), dp(5)]
+    height: dp(60)
+    md_bg_color: app.theme_cls.bg_dark if app.theme_cls.theme_style == 'Dark' else app.theme_cls.bg_normal
+
+    MDBoxLayout:
+        size: root.size[0] * 0.2, root.size[1]
+        pos: root.pos
+        radius: [dp(5), dp(0), dp(0), dp(5)]
+        md_bg_color: app.theme_cls.primary_color if 'Зачёт' not in root.note else 'red'
+        
+        MDLabel:
+            text: root.mini_card
+            markup: True
+            halign: 'center'
+            valign: 'center'
+            theme_text_color: 'Custom'
+            text_color: 1, 1, 1, 1
+		
+    MDBoxLayout:
+        size: root.size[0] * 0.8, root.size[1]
+        pos: root.pos[0] + root.size[0] * 0.2, root.pos[1]
+
+        MDLabel:
+            text: root.big_card
+            font_size: '12sp'
+            halign: 'center'
+            valign: 'center'
+            theme_text_color: 'Custom'
+            text_color: 1, 1, 1, 1
+            
+    MDFlatButton:
+		pos: root.pos
+        size: root.size
+        on_release: root.toggle_content()
+        
+        MDLabel:
+            text: root.iD
+            halign: 'right'
+            theme_text_color: 'Custom'
+            text_color: 1, 1, 1, 0.4
+	
+<LoginScreen>:
+    name: 'login_screen'
+
+    MDScreen:
+        Image:
+            source: 'logo.webp'
+            size_hint: None, None
+            size: dp(200), dp(200)
+            pos_hint: {'center_x': .5, 'center_y': .7}
+
+        MDTextField:
+            id: login_field
+            hint_text: 'Логин'
+            pos_hint: {'center_x': .5, 'center_y': .45}    
+            size_hint_x: .36
+
+        MDTextField:
+            id: password_field
+            hint_text: 'Пароль'
+            password: True
+            pos_hint: {'center_x': .5, 'center_y': .35}
+            size_hint_x: .36
+
+        MDFillRoundFlatButton:
+            text: '     Войти     '
+            pos_hint: {'center_x': .5, 'center_y': .2}
+            on_release: root.login_button()
+
+<FacultyScreen>:
+    name: 'faculty_screen'
+    
+    MDScreen:
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, 0.05
+            pos_hint: {'top': 1}
+
+            md_bg_color: app.theme_cls.primary_color
+            radius: [dp(0), dp(0), dp(10), dp(10)]
+            
+            MDLabel:
+                id: select_subject
+                text: 'Специальность'
+                halign: 'center'
+
+        MDScrollView:
+            size_hint: 1, 0.95
+
+            MDList:
+                id: container
+
+<ThemeScreen>:
+    name: 'theme_screen'
+    
+    MDScreen:
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, 0.05
+            pos_hint: {'top': 1}
+
+            md_bg_color: app.theme_cls.primary_color
+            radius: [dp(0), dp(0), dp(10), dp(10)]
+            
+            MDLabel:
+                id: select_subject
+                text: 'Выберите тему'
+                halign: 'center'
+
+        MDScrollView:
+            size_hint: 1, 0.95
+
+            MDList:
+                id: container
+                
+                OneLineListItem:
+                    text: 'Синяя - тёмная'
+                    on_release: root.select_theme()
+                OneLineListItem:
+                    text: 'Зелёная - тёмная'
+                    on_release: root.select_theme('Green')
+                OneLineListItem:
+                    text: 'Оранжевая - тёмная'
+                    on_release: root.select_theme('Orange')
+                OneLineListItem:
+                    text: 'Розовая - тёмная'
+                    on_release: root.select_theme('Pink')
+                OneLineListItem:
+                    text: 'Синяя - светлая (ВЫР.)'
+                OneLineListItem:
+                    text: 'Зелёная - светлая (ВЫР.)'
+                OneLineListItem:
+                    text: 'Оранжевая - светлая (ВЫР.)'
+                OneLineListItem:
+                    text: 'Розовая - светлая (ВЫР.)'
+    
+<MenuScreen>:
+    name: 'menu_screen'
+
+    MDScreen:
+        MDBottomNavigation:
+            id: navigation_panel
+            
+            selected_color_background: app.theme_cls.primary_color
+            text_color_active: 'lightgrey'
+            use_text: False
+            
+            MDBottomNavigationItem:
+                name: 'schedule'
+                icon: 'calendar-text'
+                
+                MDBoxLayout:       
+                    size_hint: 1, 0.9
+                    orientation: 'vertical'
+                    #pos_hint: {'center_y': 0.55}
+                    pos_hint: {'top': 1}
+                    #md_bg_color: 'white'
+                
+                    MDScrollView:
+                        MDBoxLayout:
+                            id: time_table
+                            orientation: 'vertical'
+                            size_hint_y: None
+                            height: self.minimum_height
+                            spacing: dp(20)
+                            padding: dp(25)
+                            
+                            #Сюда добавляются предметы#
+                            
+                MDBoxLayout:
+                    size_hint: 1, 0.13
+                    spacing: dp(20)
+                    padding: dp(85)
+                    orientation: 'horizontal'
+                    #md_bg_color: 'red'
+                    
+                    MDRoundFlatButton:
+                        id: week_item
+                        text: root.current_week
+                        pos_hint: {'center_y': 0.5}
+                        theme_text_color: 'Custom'
+                        text_color: 'white'
+                        on_release: root.week_button.open()
+                        
+                    MDFillRoundFlatButton:
+                        id: day_item
+                        text: root.current_day
+                        pos_hint: {'center_y': 0.5}
+                        theme_text_color: 'Custom'
+                        text_color: 'white'
+                        on_release: root.day_button.open()
+                    
+
+            MDBottomNavigationItem:
+                name: 'profile'
+                icon: 'account-circle'
+                
+                MDScrollView:
+                    MDBoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: None
+                        height: self.minimum_height
+                        padding: dp(25)
+
+                        MDCard:
+                            size_hint: None, None
+                            size: dp(300), dp(180)
+                            pos_hint: {'center_x': 0.5}
+                            elevation: 1
+                            shadow_offset: dp(0.5), dp(-0.5)
+                            radius: [dp(12), dp(12), dp(72), dp(12)]
+
+                            FitImage:
+                                source: 'msu.webp'
+                                radius: [dp(12), dp(12), dp(72), dp(12)]
+                                
+                        MDIconButton:
+                            id: settings_button
+                            icon: 'pencil'
+                            md_bg_color: app.theme_cls.primary_color
+                            pos_hint: {'center_x': 0.9, 'center_y': 0.5}
+                            on_release: root.settings_button.open()#button_action('theme')
+                            
+                        MDCard:
+                            size_hint: None, None
+                            size: dp(300), dp(280)
+                            orientation: 'vertical'
+                            pos_hint: {'center_x': 0.5}
+                            elevation: 1
+                            shadow_offset: 0.5, -0.5
+                            radius: [dp(12), dp(72), dp(12), dp(12)]
+                            padding: dp(20)
+                            
+                            MDBoxLayout:
+                                #md_bg_color: app.theme_cls.primary_color
+                                MDLabel:
+                                    text: root.current_course
+                                    markup: True
+                                    halign: 'left'
+                                    theme_text_color: 'Custom'
+                                    text_color: 'white'
+                                    
+                            MDBoxLayout:
+                                #md_bg_color: 'green'
+                                size_hint_y: 0.6
+                                MDLabel:
+                                    text: '[size=18sp][b]Специальность:[/size][/b]'
+                                    markup: True
+                                    halign: 'left'
+                                    theme_text_color: 'Custom'
+                                    text_color: 'white'
+                                
+                            MDBoxLayout:
+                                #md_bg_color: 'red'
+                                size_hint_y: 2.4
+                                MDLabel:
+                                    text: root.current_faculty
+                                    font_size: '16sp'
+                                    pos_hint: {'center_y': 1-len(self.text)/70 if len(self.text) < 7 else 1-len(self.text)/210}
+                                    halign: 'left'
+                                    theme_text_color: 'Custom'
+                                    text_color: 'white'
+                                
+
+            MDBottomNavigationItem:
+                name: 'exit'
+                icon: 'exit-to-app'
+                on_tab_release: app.stop()
