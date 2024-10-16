@@ -1,4 +1,3 @@
-from lesson_view import *
 from login_screen import *
 from faculty_screen import *
 from theme_screen import *

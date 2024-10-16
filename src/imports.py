@@ -25,6 +25,11 @@ import json
 
 HEADERS = {'User-Agent': 'CroockedHands/2.0 (EVM x8), CurlyFingers20/1;p'}
 
+WEEK = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
+
 PARSER = 'html' #'lxml'
 
-WEEK = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
+CONFIG = 'config.json'
+
+INTRO = 'intro.json'
+ 

@@ -1,11 +1,11 @@
 {
-    "login": "",
-    "password": "",
-    "faculty_name": "",
-    "faculty_iD": "",
-    "course": "",
+    "login": "msu",
+    "password": "msu2013",
+    "faculty_name": "Химия - Физическая химия М.",
+    "faculty_iD": "17",
+    "course": "1",
     "first_launch": true,
-    "auto_connect": false,
+    "auto_connect": true,
     "style": "Dark",
     "palette": "Blue"
 }

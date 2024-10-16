@@ -1,5 +1,5 @@
 from imports import *
- 
+
 class Day:
     def __init__(self, date, lessons):
         self.date = date
@@ -82,4 +82,3 @@ class LessonButton(
             self.mini_card = self.get_mini_card(self.time, self.audience)
             
         self.released = not self.released
- 

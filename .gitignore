@@ -92,3 +92,6 @@ debug/
 *.swp
 *.swo
 .*.swp
+
+# Resources
+res/

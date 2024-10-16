@@ -3,7 +3,10 @@ from imports import *
 class TimeTable(MDApp):
     def build(self):
         self.work = Session()
-        self.config = 'config.json'
+        self.config = CONFIG
+        self.intro = INTRO
+        
+        self.dialogs = []
         
         with open(self.config, 'r', encoding='utf-8') as file:
                 config = json.load(file)
@@ -62,25 +65,25 @@ class TimeTable(MDApp):
         app = MDApp.get_running_app()
         
         if dialog_type == 'message':
-            self.dialog = MDDialog(
+            iD = len(self.dialogs)
+            
+            dialog = MDDialog(
                 text = message,
                 buttons = [
                     MDFlatButton(
                         text = 'ЗАКРЫТЬ',
                         theme_text_color = 'Custom',
                         text_color = app.theme_cls.primary_color,
-                        on_release = self.dialog_close
+                        on_release = lambda *args: self.dialog_close(iD)
                     ),
                 ],
             )
+            
+            self.dialogs.append(dialog)
+            return dialog
 
-            return self.dialog
+    def dialog_close(self, iD):
+        self.dialogs[iD].dismiss()
         
-        elif dialog_type == 'info':
-            self.dialog = MDDialog( #Требутся заменить!
-                text = message
-            )
-            return self.dialog
-
-    def dialog_close(self, instance):
-        self.dialog.dismiss()
+    def dialogs_clean(self):
+        self.dialogs = []

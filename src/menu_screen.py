@@ -1,19 +1,6 @@
 from imports import *
+from lesson_view import *
 
-MESSAGE = '''Примечание к выпуску:
-
-Приложение находится в альфа-версии и может содержать множество ошибок. Пожалуйста, примите это к сведению!
-
-1. При нажатии на предмет отображаются имя преподавателя и примечание к предмету.
-   
-2. При повторном нажатии содержимое возвращается к исходному виду.
-   
-3. Предметы с зачетами выделены особым цветом.
-
-4. При входе в приложение оно уведомит о наличии зачетов на текущей неделе.
-
-5. В профиле можно изменить специальность.'''
-        
 class MenuScreen(MDScreen):
     current_week = StringProperty()
     current_course = StringProperty()
@@ -110,8 +97,15 @@ class MenuScreen(MDScreen):
         
         if self.show_messages:
             if self.app.first_launch:
-                # message надо поменять
-                self.app.get_dialog('info', MESSAGE).open()
+                message = 'Примечания:\n\n'
+                
+                with open(self.app.intro, 'r', encoding='utf-8') as file:
+                    intro = json.load(file)
+                    
+                    for i, line in enumerate(intro, start=1):
+                        message += f'{i}. {line}\n\n'
+                        
+                self.app.get_dialog('message', message).open()
                 self.app.first_launch = False
                 
             self.find_exams()
