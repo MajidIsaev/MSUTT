@@ -2,7 +2,7 @@
 
 title = MSUTT
 
-version = 0.5
+version = 0.6
 
 package.name = msutt
 
