@@ -1,9 +1,9 @@
 from imports import *
 
 class FacultyScreen(MDScreen):
-    def on_pre_enter(self):        
+    def on_pre_enter(self):
         self.app = MDApp.get_running_app()
-
+        
         if self.open_profile(
             self.app.faculty_name,
             self.app.faculty_iD,
@@ -85,7 +85,8 @@ class FacultyScreen(MDScreen):
             with open(self.app.config, 'w', encoding='utf-8') as file:
                 json.dump(config, file, ensure_ascii=False, indent=4)
 
-            self.app.change_screen('menu_screen')
+            self.app.loading_dialog.open()
+            Clock.schedule_once(lambda dt: self.load_profile(), 0)
             
             return True
         else:
@@ -95,3 +96,7 @@ class FacultyScreen(MDScreen):
         container = self.ids.container
         container.clear_widgets()
         self.ids.select_subject.text = label_text
+        
+    def load_profile(self):
+        self.app.loading_dialog.dismiss()
+        self.app.change_screen('menu_screen')

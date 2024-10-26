@@ -6,10 +6,12 @@ class MenuScreen(MDScreen):
     current_course = StringProperty()
     current_faculty = StringProperty()
     current_day = StringProperty()
+    week = StringProperty()
     
     def on_pre_enter(self):
         self.app = MDApp.get_running_app()
         self.weekid, self.weeks = self.get_week_id()
+        #self.app.loading_dialog.dismiss()
 
         data = {'profid': self.app.faculty_iD, 'courseid': self.app.course, 'weekid': self.weekid, 'inf': '0'}
         
@@ -111,7 +113,7 @@ class MenuScreen(MDScreen):
             self.find_exams()
         else:
             self.show_messages = True
-
+            
     def fetch_table(self, data):
         try:
             result = self.app.work.post('http://timetable.msu.az/process.php', headers = HEADERS, data=data, allow_redirects=True)
@@ -198,26 +200,33 @@ class MenuScreen(MDScreen):
 
     def set_week(self, week):
         self.week_button.dismiss()
-        self.weekid, _ = self.get_week_id(week)
+        self.weekid, _ = self.get_week_id(week)      
+        self.app.loading_dialog.open()
+        Clock.schedule_once(lambda dt: self.update_week(week), 0)
         
-        data = {'profid': self.app.faculty_iD, 'courseid': self.app.course, 'weekid': self.weekid, 'inf': '0'}
-        
-        if self.weekid != '-1':
-            table = self.fetch_table(data)
-        else:
-            table = [-1]
+    def update_week(self, week):
+        if not week == '':
+            data = {'profid': self.app.faculty_iD, 'courseid': self.app.course, 'weekid': self.weekid, 'inf': '0'}
             
-        if -1 in table:
-            self.days = []
-            self.show_messages = False
-            self.dialog = self.app.get_dialog('message', 'Ошибка соединения!')
-            self.dialog.open()
-        else:
-            self.days = self.table_to_days(table)
+            if self.weekid != '-1':
+                table = self.fetch_table(data)
+            else:
+                table = [-1]
+                
+            if -1 in table:
+                self.days = []
+                self.show_messages = False
+                self.dialog = self.app.get_dialog('message', 'Ошибка соединения!')
+                self.dialog.open()
+            else:
+                self.days = self.table_to_days(table)
+                
+            self.update_day_schedule()
+            self.current_day = WEEK[0]
+            self.current_week = week.split('-')[0]
             
-        self.update_day_schedule()
-        self.current_day = WEEK[0]
-        self.current_week = week.split('-')[0]
+            self.app.loading_dialog.dismiss()
+            self.week = ''
         
     def set_day(self, day):
         self.day_button.dismiss()
@@ -271,4 +280,10 @@ class MenuScreen(MDScreen):
         self.app.faculty_name = ''
         self.app.faculty_iD = ''
         self.app.course = ''
+        self.app.loading_dialog.open()
+        Clock.schedule_once(lambda dt: self.update_faculty(), 0)
+        
+    def update_faculty(self):
+        self.app.loading_dialog.dismiss()
         self.app.root.current = 'faculty_screen'
+        

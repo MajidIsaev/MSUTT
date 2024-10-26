@@ -8,6 +8,8 @@ class TimeTable(MDApp):
         
         self.dialogs = []
         
+        self.loading_dialog = self.get_dialog('info', 'Загрузка...')
+        
         with open(self.config, 'r', encoding='utf-8') as file:
                 config = json.load(file)
                 self.login_value = config['login']
@@ -64,9 +66,9 @@ class TimeTable(MDApp):
     def get_dialog(self, dialog_type, message = ''):
         app = MDApp.get_running_app()
         
+        iD = len(self.dialogs)
+        
         if dialog_type == 'message':
-            iD = len(self.dialogs)
-            
             dialog = MDDialog(
                 text = message,
                 buttons = [
@@ -79,11 +81,26 @@ class TimeTable(MDApp):
                 ],
             )
             
-            self.dialogs.append(dialog)
-            return dialog
+        elif dialog_type == 'info':
+            dialog = MDDialog(
+                text = message,
+                buttons = [
+                    MDFlatButton(
+                        theme_text_color = 'Custom',
+                        text_color = app.theme_cls.primary_color,
+                        on_release = lambda *args: self.dialog_close(iD)
+                    ),
+                ],
+            )
+            
+        self.dialogs.append(dialog)
+        return dialog
 
     def dialog_close(self, iD):
         self.dialogs[iD].dismiss()
+        
+        if len(self.dialogs) >= MAX_OF_DIALOGS:
+            self.dialogs_clean() 
         
     def dialogs_clean(self):
         self.dialogs = []

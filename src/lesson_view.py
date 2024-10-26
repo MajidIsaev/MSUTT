@@ -62,12 +62,12 @@ class LessonButton(
         size = 12 if len(audience) < 9 else 11
         
         content = f'[size={size}sp]' + time.split('|', 1)[0] + '[/size]'
-        content = content + f'[size={size-2}sp]\n—\n[/size]'
-        content = content + f'[size={size}sp]' + time.rsplit('|', 1)[-1] + '\n[/size]'
+        content += f'[size={size-2}sp]\n—\n[/size]'
+        content += f'[size={size}sp]' + time.rsplit('|', 1)[-1] + '\n[/size]'
         
         size = 11 if len(audience) < 9 else 9
         
-        content = content + f'[size={size}sp]' + audience + '[/size]'
+        content += f'[size={size}sp]' + audience + '[/size]'
         
         return content
         
