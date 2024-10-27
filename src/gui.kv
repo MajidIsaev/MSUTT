@@ -10,14 +10,14 @@ MDScreenManager:
     pos_hint: {'center_x': .5}
     elevation: 1
     shadow_offset: 0.5, -0.5
-    radius: [dp(5), dp(5), dp(5), dp(5)]
+    radius: dp(5), dp(5), dp(5), dp(5)
     height: dp(60)
-    md_bg_color: app.theme_cls.bg_dark if app.theme_cls.theme_style == 'Dark' else app.theme_cls.bg_normal
+    md_bg_color: app.theme_cls.bg_light
 
     MDBoxLayout:
         size: root.size[0] * 0.2, root.size[1]
         pos: root.pos
-        radius: [dp(5), dp(0), dp(0), dp(5)]
+        radius: dp(5), dp(0), dp(0), dp(5)
         md_bg_color: app.theme_cls.primary_color if 'Зачёт' not in root.note else 'red'
         
         MDLabel:
@@ -38,7 +38,7 @@ MDScreenManager:
             halign: 'center'
             valign: 'center'
             theme_text_color: 'Custom'
-            text_color: 'white' if app.theme_cls.theme_style == 'Dark' else 'black'
+            text_color: app.theme_cls.opposite_bg_dark
             
     MDFlatButton:
 		pos: root.pos
@@ -89,7 +89,7 @@ MDScreenManager:
             pos_hint: {'top': 1}
 
             md_bg_color: app.theme_cls.primary_color
-            radius: [dp(0), dp(0), dp(10), dp(10)]
+            radius: dp(0), dp(0), dp(10), dp(10)
             
             MDLabel:
                 id: select_subject
@@ -114,7 +114,7 @@ MDScreenManager:
             pos_hint: {'top': 1}
 
             md_bg_color: app.theme_cls.primary_color
-            radius: [dp(0), dp(0), dp(10), dp(10)]
+            radius: dp(0), dp(0), dp(10), dp(10)
             
             MDLabel:
                 id: select_subject
@@ -221,11 +221,11 @@ MDScreenManager:
                             pos_hint: {'center_x': 0.5}
                             elevation: 1
                             shadow_offset: dp(0.5), dp(-0.5)
-                            radius: [dp(12), dp(12), dp(72), dp(12)]
+                            radius: dp(12), dp(12), dp(72), dp(12)
 
                             FitImage:
                                 source: 'msu.webp'
-                                radius: [dp(12), dp(12), dp(72), dp(12)]
+                                radius: dp(12), dp(12), dp(72), dp(12)
                                 
                         MDBoxLayout:
                             size_hint: None, None
@@ -247,7 +247,7 @@ MDScreenManager:
                             pos_hint: {'center_x': 0.5}
                             elevation: 1
                             shadow_offset: 0.5, -0.5
-                            radius: [dp(12), dp(72), dp(12), dp(12)]
+                            radius: dp(12), dp(72), dp(12), dp(12)
                             padding: dp(20)
                             
                             MDBoxLayout:

@@ -2,7 +2,7 @@
 
 title = MSUTT
 
-version = 0.9
+version = 1.0
 
 package.name = msutt
 
@@ -26,6 +26,7 @@ orientation = portrait
 
 icon.filename = ./logo.png
 
+presplash.filename = ./logo.png
 
 android.permissions = INTERNET, WRITE_EXTERNAL_STORAGE
 
@@ -36,6 +37,7 @@ android.archs = armeabi-v7a
 android.allow_backup = False
 
 android.release_artifact = apk
+
 
 [buildozer]
 

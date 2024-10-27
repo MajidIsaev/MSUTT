@@ -1,5 +1,5 @@
 from kivymd.app import MDApp
-from icecream import ic
+
 from kivymd.uix.screen import MDScreen
 from kivymd.uix.menu import MDDropdownMenu
 from kivymd.uix.list import OneLineListItem
@@ -16,7 +16,7 @@ from kivy.uix.behaviors import ButtonBehavior
 from kivymd.uix.behaviors import (
     RectangularRippleBehavior,
     BackgroundColorBehavior,
-    CommonElevationBehavior
+    CommonElevationBehavior,
 )
 
 from bs4 import BeautifulSoup
@@ -25,15 +25,16 @@ from datetime import datetime, timedelta
 import json
 import time
 
-HEADERS = {'User-Agent': 'CroockedHands/2.0 (EVM x8), CurlyFingers20/1;p'}
 
-WEEK = ['ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ', 'ВС']
+HEADERS = {"User-Agent": "CroockedHands/2.0 (EVM x8), CurlyFingers20/1;p"}
 
-PARSER = 'html' #'lxml'
+WEEK = ["ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"]
 
-CONFIG = 'config.json'
+PARSER = "html"  #'lxml'
 
-INTRO = 'intro.json'
+CONFIG = "config.json"
+
+INTRO = "intro.json"
 
 MAX_OF_DIALOGS = 10
  

@@ -2,15 +2,15 @@
 
 ![smartmockups_m297wz3d](https://github.com/user-attachments/assets/49c4ce31-e979-463b-aa82-00dbd08f4fa1)
 
-## О проекте
-MSUTT — это тестовый проект, созданный для изучения возможностей мобильной разработки на Python с использованием фреймворков Kivy и KivyMD. Сборка проекта выполняется через Buildozer. Основная функция приложения — отображение актуального расписания занятий Бакинского филиала МГУ. 
+## About the Project
+MSUTT is a test project created to explore mobile development possibilities using Python, with Kivy and KivyMD frameworks. The project is built via Buildozer, and its main function is to display the current class schedule for the Baku branch of Moscow State University.
 
-## Функциональность
-- Отображение расписания занятий в реальном времени.
-- Уведомления о предстоящих экзаменах на текущей неделе.
-- Возможность кастомизации внешнего вида приложения (в настоящее время доступна только темная тема).
+## Features
+- Real-time class schedule display.
+- Notifications for upcoming exams during the current week.
+- Option to customize the app's appearance (currently only a dark theme is available).
 
-## Структура приложения
+## Structure
 This application contains the following screens and classes:
 
 1. **LoginScreen (in `login_screen.py`)**: Represents the login interface.
@@ -23,9 +23,8 @@ This application contains the following screens and classes:
 
 5. **TimeTable (in `time_table`)**: Core class managing screen transitions, loading/saving variables, and handling the dialog system.
 
-
-## Зависимости
-Проект использует следующие зависимости:
+## Dependencies
+The project uses the following dependencies:
 - `buildozer`
 - `requests`
 - `datetime`
@@ -34,27 +33,27 @@ This application contains the following screens and classes:
 - `kivymd==1.2.0`
 - `pillow`
 
-Если вы используете парсер `lxml`, добавьте также:
+If using the `lxml` parser, also include:
 - `lxml==5.1.0`
 
-## Поддерживаемые платформы
-MSUTT работает на компьютерах и смартфонах.
+## Supported Platforms
+MSUTT runs on computers and smartphones.
 
-- **Смартфоны**: поддерживаются устройства на базе Android и iOS (для iOS требуется дополнительная настройка сборки).
-- **Компьютеры**: поддерживаются платформы Windows, Linux и macOS.
+- **Smartphones**: Android and iOS devices are supported (iOS requires additional setup).
+- **Computers**: Windows, Linux, and macOS are supported.
 
-Для сборки проекта под смартфоны используется Buildozer. По умолчанию, файл `buildozer.spec` настроен для устройств с Android 8.1 и выше. Поддержка iOS требует дополнительных шагов, таких как настройка окружения на macOS с установленным Xcode. Если при сборке возникают ошибки или приложение не запускается после установки, можно попробовать использовать альтернативный код. Для этого удалите все файлы `.py` из папки `src` и скопируйте файл `main.py` из деректории `alt` обратно в `src`. После этого пересоберите приложение заново.
+Buildozer is used to build the project for smartphones. By default, the `buildozer.spec` file is configured for Android 8.1+ devices. iOS support requires additional steps, like setting up the environment on macOS with Xcode.
 
-### Примечание:
-Размер готового приложения может зависеть от операционной системы, на которой производится сборка. Рекомендуется избегать сборки на виртуальной машине, так как есть вероятность, что размер приложения увеличится вдвое.
+### Note:
+The final app size may vary depending on the operating system used for building. Avoid building on a virtual machine, as this may double the app size.
 
-## Обратная связь
-Если у вас возникли вопросы или предложения, пожалуйста, создайте [issue](https://github.com/MajidIsaev/MSUTT/issues) на GitHub или свяжитесь со мной по email: isaevmajidelman@gmail.com.
+## Feedback
+If you have questions or suggestions, please create an [issue](https://github.com/MajidIsaev/MSUTT/issues) on GitHub or contact me via email at isaevmajidelman@gmail.com.
 
-## Лицензия
-Этот проект распространяется под лицензией MIT. Подробнее смотрите в файле [LICENSE](LICENSE).
+## License
+This project is licensed under the MIT License. For details, see the [LICENSE](LICENSE) file.
 
-## Полезные ссылки
-- [Документация Kivy](https://kivy.org/doc/stable/)
-- [Документация KivyMD](https://kivymd.readthedocs.io/en/1.1.1/)
-- [Руководство по Buildozer](https://buildozer.readthedocs.io/en/latest/)
+## Useful Links
+- [Kivy Documentation](https://kivy.org/doc/stable/)
+- [KivyMD Documentation](https://kivymd.readthedocs.io/en/1.1.1/)
+- [Buildozer Guide](https://buildozer.readthedocs.io/en/stable/)
