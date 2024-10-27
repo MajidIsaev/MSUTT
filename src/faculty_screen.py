@@ -93,9 +93,9 @@ class FacultyScreen(MDScreen):
             return False
 
     def clear_container(self, label_text = 'Специальность'):
-        container = self.ids.container
-        container.clear_widgets()
         self.ids.select_subject.text = label_text
+        self.ids.container.clear_widgets()
+        self.ids.container._trigger_layout()
         
     def load_profile(self):
         self.app.loading_dialog.dismiss()

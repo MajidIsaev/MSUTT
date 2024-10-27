@@ -1,11 +1,11 @@
 {
-    "login": "msu",
-    "password": "msu2013",
-    "faculty_name": "Математика и компьютерные науки",
-    "faculty_iD": "10",
-    "course": "4",
-    "first_launch": false,
-    "auto_connect": true,
+    "login": "",
+    "password": "",
+    "faculty_name": "",
+    "faculty_iD": "",
+    "course": "",
+    "first_launch": true,
+    "auto_connect": false,
     "style": "Dark",
     "palette": "Blue"
 }

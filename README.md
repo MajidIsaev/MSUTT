@@ -10,6 +10,20 @@ MSUTT — это тестовый проект, созданный для изу
 - Уведомления о предстоящих экзаменах на текущей неделе.
 - Возможность кастомизации внешнего вида приложения (в настоящее время доступна только темная тема).
 
+## Структура приложения
+This application contains the following screens and classes:
+
+1. **LoginScreen (in `login_screen.py`)**: Represents the login interface.
+2. **FacultyScreen (in `faculty_screen`)**: Allows selection of a major and course.
+3. **ThemeScreen (in `theme_screen`)**: Provides options for changing the app's appearance.
+4. **MenuScreen (in `menu_screen`)**: The main screen with three primary sections:
+   - **Schedule**: Displays the current schedule and allows viewing other days.
+   - **Profile**: Shows student information (specialty, course) and allows design or specialty updates.
+   - **Exit**: Closes the application.
+
+5. **TimeTable (in `time_table`)**: Core class managing screen transitions, loading/saving variables, and handling the dialog system.
+
+
 ## Зависимости
 Проект использует следующие зависимости:
 - `buildozer`

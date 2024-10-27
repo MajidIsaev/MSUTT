@@ -169,11 +169,29 @@ MDScreenManager:
                 name: 'schedule'
                 icon: 'calendar-text'
                 
+                MDBoxLayout:
+                    size_hint: 1, 0.13
+                    spacing: dp(20)
+                    padding: dp(80), 0, dp(80), 0
+
+                    MDRoundFlatButton:
+                        id: week_item
+                        text: root.current_week
+                        pos_hint: {'center_y': 0.5}
+                        size_hint_x: 0.6
+                        on_release: root.week_button.open()
+                        
+                    MDFillRoundFlatButton:
+                        id: day_item
+                        text: root.current_day
+                        pos_hint: {'center_y': 0.5}
+                        size_hint_x: 0.4
+                        on_release: root.day_button.open()
+                        
                 MDBoxLayout:       
                     size_hint: 1, 0.9
                     orientation: 'vertical'
-                    #pos_hint: {'center_y': 0.55}
-                    pos_hint: {'top': 1}
+                    pos_hint: {'center_y': 0.55}
                 
                     MDScrollView:
                         MDBoxLayout:
@@ -182,28 +200,9 @@ MDScreenManager:
                             size_hint_y: None
                             height: self.minimum_height
                             spacing: dp(20)
-                            padding: dp(25)
+                            padding: dp(25), dp(45), dp(25), dp(25)
                             
                             #ITEMS#
-                            
-                MDBoxLayout:
-                    size_hint: 1, 0.13
-                    spacing: dp(20)
-                    padding: dp(85)
-                    orientation: 'horizontal'
-                    
-                    MDRoundFlatButton:
-                        id: week_item
-                        text: root.current_week
-                        pos_hint: {'center_y': 0.5}
-                        on_release: root.week_button.open()
-                        
-                    MDFillRoundFlatButton:
-                        id: day_item
-                        text: root.current_day
-                        pos_hint: {'center_y': 0.5}
-                        on_release: root.day_button.open()
-                    
 
             MDBottomNavigationItem:
                 name: 'profile'
@@ -214,11 +213,11 @@ MDScreenManager:
                         orientation: 'vertical'
                         size_hint_y: None
                         height: self.minimum_height
-                        padding: dp(25)
+                        padding: dp(25), dp(45), dp(25), dp(25)
 
                         MDCard:
                             size_hint: None, None
-                            size: dp(300), dp(180)
+                            size: root.size[0]*0.8, root.size[1]*0.2
                             pos_hint: {'center_x': 0.5}
                             elevation: 1
                             shadow_offset: dp(0.5), dp(-0.5)
@@ -228,16 +227,22 @@ MDScreenManager:
                                 source: 'msu.webp'
                                 radius: [dp(12), dp(12), dp(72), dp(12)]
                                 
-                        MDIconButton:
-                            id: settings_button
-                            icon: 'pencil'
-                            md_bg_color: app.theme_cls.primary_color
-                            pos_hint: {'center_x': 0.9, 'center_y': 0.5}
-                            on_release: root.settings_button.open()
+                        MDBoxLayout:
+                            size_hint: None, None
+                            size: root.size[0]*0.8, dp(40)
+                            pos_hint: {'center_x': 0.5}
+                            padding: self.size[0] - dp(40), 0, 0, 0
                             
+                            MDIconButton:
+                                id: settings_button
+                                icon: 'pencil'
+                                pos_hint: {'center_y': 0.5}
+                                md_bg_color: app.theme_cls.primary_color
+                                on_release: root.settings_button.open()
+                                
                         MDCard:
                             size_hint: None, None
-                            size: dp(300), dp(280)
+                            size: root.size[0]*0.8, root.size[1]*0.35
                             orientation: 'vertical'
                             pos_hint: {'center_x': 0.5}
                             elevation: 1
@@ -246,7 +251,6 @@ MDScreenManager:
                             padding: dp(20)
                             
                             MDBoxLayout:
-                                #md_bg_color: app.theme_cls.primary_color
                                 MDLabel:
                                     text: root.current_course
                                     markup: True
@@ -263,11 +267,17 @@ MDScreenManager:
                             MDBoxLayout:
                                 #md_bg_color: 'red'
                                 size_hint_y: 2.4
+                                orientation: 'vertical'
+                                
                                 MDLabel:
                                     text: root.current_faculty
-                                    font_size: '16sp'
-                                    pos_hint: {'center_y': 1-len(self.text)/70 if len(self.text) < 7 else 1-len(self.text)/210}
+                                    size_hint_y: 0.4
+                                    #font_size: '16sp'
+                                    #pos_hint: {'center_y': 0.9}
                                     halign: 'left'
+                                    
+                                MDLabel: ## reduces the text area
+                                    size_hint_y: 0.6
                                 
 
             MDBottomNavigationItem:
